@@ -39,11 +39,11 @@ jsonData$open_issues_count # number of open issues
 
 ```
 
-\texttt{rvest} package
+\texttt{rvest} package. Web scraping.
 
 ```{r rvest package}
-recount_url = "http://bowtie-bio.sourceforge.net/recount/"
-install.packages("rvest")
+recount_url = "http://bowtie-bio.sourceforge.net/recount/" # identify the url you want to scrape
+install.packages("rvest") 
 library(rvest)
 htmlfile = html(recount_url)
 
