@@ -3,18 +3,39 @@ title: "SISBID"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Installing google sheets. For google documents to be accessible: File > Publish to the web
+```{r googlesheets}
+install.packages("googlesheets")
+library(googlesheets)
+sheets_url = "https://docs.google.com/spreadsheets/d/18KQQd4LY5k8Ucux1MvWCsQGQJlvd0ECTnn-3ixdOKFM/pubhtml"
+gsurl1 = gs_url(sheets_url)
+dat = gs_read(gsurl1)
+dateAccessed = date()
+dateAccessed
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r}
-summary(cars)
 ```
 
-You can also embed plots, for example:
+JSON data
 
-```{r, echo=FALSE}
-plot(cars)
+```{r json data}
+github_url = "https://api.github.com/users/jtleek/repos"
+
+install.packages("jsonlite")
+library(jsonlite)
+jsonData <- fromJSON(github_url)
+dim(jsonData)
+jsonData$name
+table(sapply(jsonData,class))
+dim(jsonData$owner)
+names(jsonData$owner)
+head(jsonData$owner)
+jsonData$owner$url
+
+github_url = "https://api.github.com/users/hadley/repos"
+jsonData <- fromJSON(github_url)
+dim(jsonData)
+jsonData$stargazers_count
+jsonData$open_issues_count
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
